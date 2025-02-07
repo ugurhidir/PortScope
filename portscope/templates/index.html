@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port Tarayıcı</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Font Awesome (ikonlar için) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- DOMPurify'ı ekle (XSS güvenliği için) -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js"></script>
+    <!-- Google Fonts (İsteğe Bağlı - Örnek: Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <svg id="logo"  viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="PortScope-Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <!-- Telescope Body -->
+                    <ellipse id="Telescope-Body" fill="#1E3A8A" cx="250" cy="250" rx="120" ry="60" transform="rotate(-20 250 250)" />
+                    <!-- Lenses -->
+                    <circle id="Lens-Left" fill="#1E3A8A" stroke="#000000" stroke-width="5" cx="180" cy="230" r="50" />
+                    <circle id="Lens-Right" fill="#1E3A8A" stroke="#000000" stroke-width="5" cx="320" cy="230" r="50" />
+                    <!-- Port Indicators -->
+                    <circle id="Port-Open" fill="#00FF00" cx="170" cy="220" r="8" />
+                    <circle id="Port-Closed" fill="#FF0000" cx="190" cy="250" r="8" />
+                    <circle id="Port-Warning" fill="#FFA500" cx="310" cy="220" r="8" />
+                    <circle id="Port-Open-Right" fill="#00FF00" cx="330" cy="250" r="8" />
+                    <!-- Text -->
+                    <text id="PortScope-Text" font-family="Montserrat, sans-serif" font-size="40" font-weight="bold" fill="#000000" x="125" y="350">PortScope</text>
+                </g>
+            </svg>
+            <h1>Port Tarayıcı</h1>
+        </header>
+
+        <div class="input-group">
+            <label for="target">Hedef IP/Host:</label>
+            <input type="text" id="target" placeholder="Örn: 192.168.1.1 veya scanme.nmap.org">
+        </div>
+
+        <div class="input-group">
+            <label for="ports">Portlar (Aralık veya Tek):</label>
+            <input type="text" id="ports" placeholder="Örn: 80, 443, 8000-8080">
+            <label class = "checkbox-label"><input type="checkbox" id="common-ports"> Yaygın Portları Ekle</label>
+        </div>
+
+        <div id="common-ports-list" style="display: none;">
+            <!-- Burası JavaScript ile dinamik olarak doldurulacak -->
+        </div>
+
+        <div class="input-group">
+            <label class = "checkbox-label"><input type="checkbox" id="show-open-only"> Sadece Açık Portları Göster</label>
+        </div>
+
+        <div class="input-group">
+            <label class = "checkbox-label"><input type="checkbox" id="detect-services"> Servisleri/Versiyonları Tespit Et</label>
+        </div>
+
+        <div class="input-group">
+          <label class="checkbox-label"><input type="checkbox" id="detect-os"> İşletim Sistemini Tespit Et</label>
+        </div>
+
+        <button id="scan-button">Taramayı Başlat</button>
+
+        <div id="results">
+            <h2>Sonuçlar</h2>
+            <div id="progress"></div>
+            <ul id="port-list"></ul>
+             <!-- İndirme butonları -->
+            <div id="download-buttons" style="display: none;">
+                <button class="download-button" data-format="html"><i class="fas fa-file-code"></i> HTML</button>
+                <!-- PDF butonu kaldırıldı -->
+                <!-- <button class="download-button" data-format="pdf"><i class="fas fa-file-pdf"></i> PDF</button> -->
+                <button class="download-button" data-format="json"><i class="fas fa-file-alt"></i> JSON</button>
+                <button class="download-button" data-format="text"><i class="fas fa-file-alt"></i> Text</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

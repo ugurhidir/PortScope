@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port Tarama Raporu</title>
+    <style>
+        body { font-family: sans-serif; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .open { color: green; }
+        .closed { color: red; }
+        .os-info { background-color: #e6f7ff;}
+    </style>
+</head>
+<body>
+    <h1>Port Tarama Raporu</h1>
+
+    {% for result in results %}
+        {% if 'scan_data' in result %}
+            <h2>IP Adresi: {{ result.ip }}</h2>
+            {% for proto, ports in result.scan_data.items() %}
+                <h3>Protokol: {{ proto }}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Durum</th>
+                            <th>Servis</th>
+                            <th>Ürün</th>
+                            <th>Versiyon</th>
+                            <th>Ek Bilgi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for port_data in ports %}
+                        <tr class="{{ port_data.state }}">
+                            <td>{{ port_data.port }}</td>
+                            <td>{{ port_data.state }}</td>
+                            <td>{{ port_data.service }}</td>
+                            <td>{{ port_data.product }}</td>
+                            <td>{{ port_data.version }}</td>
+                            <td>{{ port_data.extrainfo }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% elif 'os_info' in result %}
+            {% if result.os_info %}
+                <h2>İşletim Sistemi Bilgisi (IP: {{ result.ip }}):</h2>
+                <ul>
+                {% for os in result.os_info %}
+                    <li class="os-info">
+                        <strong>İşletim Sistemi:</strong> {{ os.os_name }} ({{ os.os_accuracy }}% doğruluk)<br>
+                        <strong>Tip:</strong> {{ os.os_type }}<br>
+                        <strong>Üretici:</strong> {{ os.os_vendor }}<br>
+                        <strong>Ailesi:</strong> {{ os.os_family }}<br>
+                        <strong>Versiyon:</strong> {{ os.os_gen }}<br>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

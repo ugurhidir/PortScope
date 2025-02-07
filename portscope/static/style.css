@@ -1,0 +1,223 @@
+/* style.css */
+
+:root {
+    --primary-color: #1e272e;
+    --secondary-color: #6b7280;
+    --accent-color: #7dd3fc;
+    --text-color: #ffffff;
+    --open-port-color: #2ecc71;
+    --closed-port-color: #e74c3c;
+    --warning-port-color: #f39c12;
+    --button-bg-color: #3498db;
+    --button-hover-color:#2980b9;
+    --error-color:#c0392b;
+    --input-bg-color: #374151; /* Giriş alanı arkaplan rengi */
+  }
+  
+  body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      padding: 20px;
+      margin: 0; /* Varsayılan margin'i sıfırla */
+      display: flex; /* Flexbox kullan */
+      justify-content: center; /* Yatayda ortala */
+      align-items: center; /* Dikeyde ortala */
+      min-height: 100vh; /* Minimum yükseklik = ekran yüksekliği */
+  
+  }
+  
+  /* Ana kapsayıcı */
+  .container {
+    width: 100%; /* Genişlik */
+    max-width: 800px; /* Maksimum genişlik */
+    margin: 0 auto; /* Yatayda ortala */
+    padding: 30px; /* İç boşluk */
+    background-color: var(--primary-color);
+    border-radius: 8px; /* Köşeleri yuvarlat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Gölge */
+  }
+  
+  /* Header (Logo ve Başlık) */
+  header {
+      text-align: center; /* İçeriği ortala */
+      margin-bottom: 30px; /* Alttan boşluk */
+      display: flex;         /* Flexbox */
+      flex-direction: column; /* Alt alta sırala (logo üstte, başlık altta) */
+      align-items: center;   /* Yatayda ortala */
+  }
+  
+  #logo {
+      max-width: 250px; /* Logo boyutu BÜYÜTÜLDÜ */
+      height: auto;
+      margin-bottom: 20px; /* Başlıkla arasındaki boşluk */
+      /*display: inline-block;  inline element yap. */
+      /*vertical-align: middle; Dikeyde ortala */
+  
+  }
+  
+  h1, h2 {
+      color: var(--accent-color);
+      font-weight: 700; /* Daha kalın */
+      margin-top: 0; /* Üst boşluğu sıfırla */
+      /*display: inline-block; inline element. */
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* Başlık font boyutu */
+  }
+  
+  h2{
+    font-size: 1.8rem;
+  }
+  .input-group {
+      margin-bottom: 15px; /* Giriş grupları arası boşluk */
+  }
+  
+  label {
+      display: block;
+      margin-bottom: 8px; /* Etiket alt boşluğu */
+      font-weight: 600;
+      color: var(--accent-color); /* Etiket rengi */
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .checkbox-label input{
+    margin-right: 8px;
+    margin-top: 0;
+  }
+  
+  input[type="text"], select {
+      width: 100%;
+      padding: 15px; /* Daha büyük iç boşluk */
+      margin: 0; /* Margin'i sıfırla */
+      display: block;  /* Block element */
+      border: 1px solid var(--secondary-color);
+      border-radius: 8px; /* Daha yuvarlak köşeler */
+      box-sizing: border-box;
+      background-color: var(--input-bg-color);
+      color: var(--text-color);
+      font-size: 1rem; /* Font büyüklüğü */
+  }
+  
+  /* Placeholder rengi */
+  input[type="text"]::placeholder, select::placeholder {
+      color: var(--secondary-color);
+  }
+  
+  button {
+      padding: 15px 25px; /* Daha büyük iç boşluk */
+      background-color: var(--button-bg-color);
+      color: white;
+      border: none;
+      border-radius: 8px; /* Daha yuvarlak köşeler */
+      cursor: pointer;
+      font-size: 1.2rem; /* Daha büyük font */
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  
+  }
+  
+  button:hover {
+      background-color: var(--button-hover-color);
+  }
+  
+  #results {
+      margin-top: 30px; /* Üst boşluk */
+      border-top: 2px solid var(--secondary-color); /* Daha kalın çizgi */
+      padding-top: 30px; /* İç boşluk */
+  }
+  
+  #port-list {
+      list-style: none;
+      padding: 0;
+  }
+  
+  #port-list li {
+      margin-bottom: 10px;
+      padding: 15px;
+      border: 1px solid var(--secondary-color);
+      background-color: var(--input-bg-color);
+      border-radius: 8px;
+  }
+  
+  #port-list .open {
+      color: var(--open-port-color);
+      font-weight: bold;
+  }
+  
+  #port-list .closed {
+      color: var(--closed-port-color);
+  }
+  
+  #progress {
+      font-style: italic;
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+  }
+  
+  #common-ports-list label {
+      margin-right: 15px;
+      white-space: nowrap;
+      display: inline-block;
+  }
+  
+  #common-ports-list {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid var(--secondary-color);
+      padding: 15px;
+      background-color: var(--primary-color);
+      border-radius: 8px;
+  }
+  
+  /* Hata mesajları */
+  #port-list .error {
+      color: var(--error-color);
+      font-weight: bold;
+      border-color: var(--error-color);
+  }
+  
+  /* İşletim sistemi bilgisi */
+  #port-list .os-info {
+      background-color: var(--primary-color);
+      border-color: var(--accent-color);
+  }
+  
+  /* İndirme butonları */
+  #download-buttons {
+      margin-top: 20px;
+      text-align: center; /* Butonları ortala */
+  }
+  
+  #download-buttons .download-button {
+      margin: 0 10px; /* Butonlar arası boşluk */
+      padding: 12px 20px;
+      background-color: var(--button-bg-color);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-block; /* Yatayda sırala */
+      transition: background-color 0.3s ease;
+  }
+  
+  #download-buttons .download-button:hover {
+      background-color: var(--button-hover-color);
+  }
+  
+  /* SVG içindeki öğeleri stilize et (inline SVG kullanılıyorsa) */
+  #logo #Telescope-Body {
+    /* fill: #34495e; */
+  }
+  
+  #logo #Port-Open {
+      /*fill: var(--open-port-color);*/
+  }
